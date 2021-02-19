@@ -38,8 +38,11 @@ func createComment(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewDecoder(r.Body).Decode(&comment)
 	err := comment.ValidateComment()
 	if err == nil {
-		fmt.Println("Added Scuusecfuly")
+		fmt.Println("Added Successfully")
 		json.NewEncoder(w).Encode(comment)
+	} else {
+		fmt.Println(err)
+		json.NewEncoder(w).Encode(err)
 	}
 
 }
