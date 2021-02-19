@@ -32,7 +32,7 @@ type Comment struct {
 	GPA            float32   `json:"gpa"`
 }
 
-// ValidateComment Comment Formate
+// Validate Comment Formate
 func (comment Comment) Validate() error {
 	return validation.ValidateStruct(&comment,
 		validation.Field(&comment.CommentText, validation.Required, validation.Length(5, 50)),
@@ -80,7 +80,6 @@ func createComment(w http.ResponseWriter, r *http.Request) {
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/api/comment", createComment).Methods("POST")
-
 	addr := ":8081"
 	logger.Infof("Now serving on %s", addr)
 	err := http.ListenAndServe(addr, r)
